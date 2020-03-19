@@ -3,6 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b0fd1454-8262-418b-9a33-fb6404f4db5f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/desktop/modules/blog/BlogContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/desktop/modules/blog/BlogContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/desktop/modules/documents/DocumentsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/desktop/modules/documents/DocumentsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/desktop/modules/history/HistoryContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/desktop/modules/history/HistoryContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/desktop/modules/library/LibraryContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/desktop/modules/library/LibraryContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/desktop/pages/home/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/desktop/pages/home/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/desktop/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/desktop/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,10 +77,30 @@
       <workItem from="1584478164303" duration="852000" />
       <workItem from="1584479288616" duration="4480000" />
       <workItem from="1584545908049" duration="2062000" />
+      <workItem from="1584562071022" duration="1862000" />
+      <workItem from="1584604156758" duration="25000" />
+      <workItem from="1584642110658" duration="1391000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1584604180487">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1584604180487" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/client/desktop/pages/home/HomePage.js</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
