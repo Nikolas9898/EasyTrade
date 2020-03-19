@@ -8,6 +8,7 @@ function App() {
     <Fragment>
       <Routes>
           <NavBar/>
+
       </Routes>
     </Fragment>
   );
