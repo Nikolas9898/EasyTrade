@@ -7,7 +7,10 @@ const HistoryPage = props => {
     <div>
       <NavBar />
       <HistoryContainer />
+      <p> Hello i'm Deyan!</p>
     </div>
+
+
   );
 };
 
