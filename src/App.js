@@ -1,13 +1,15 @@
-import React from 'react';
-import logo from './logo119.png';
+import React,{Fragment} from 'react';
 import './App.css';
 import Routes from "./client/desktop/routes";
+import NavBar from "./client/desktop/modules/layout/navBar/NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <Routes/>
-    </div>
+    <Fragment>
+      <Routes>
+          <NavBar/>
+      </Routes>
+    </Fragment>
   );
 }
 
