@@ -1,19 +1,14 @@
 import React from "react";
 class LibraryContainer extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {};
+    this.state = {};
+  }
 
-    }
-
-    render() {
-        return (
-            <div>
-
-            </div>
-        );
-    }
+  render() {
+    return <div></div>;
+  }
 }
 
 LibraryContainer.propTypes = {};
