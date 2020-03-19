@@ -1,24 +1,33 @@
 import React, {Component} from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import LayoutRoute from '../helpers/routes/LayoutRoute';
+import {BrowserRouter as Router, Switch,Route } from 'react-router-dom';
+import HomePage from "./pages/home/HomePage";
+import BlogContainer from "./modules/blog/BlogContainer";
+import DocumentsContainer from "./modules/documents/DocumentsContainer";
+import HistoryContainer from "./modules/history/HistoryContainer";
+import LibraryContainer from "./modules/library/LibraryContainer";
 class Routes extends Component {
     render() {
         return (
-            <div>
+            <Router>
                 <Switch>
-                    <LayoutRoute
-                        exact
+                    <Route
                         path="/"
-                        layout={Layout.Default}
+                        exact
                         component={HomePage}/>
-                    {/*<LayoutRoute*/}
-                    {/*    exact*/}
-                    {/*    path="/new-suggestions"*/}
-                    {/*    layout={Layout.Default}*/}
-                    {/*    component={NewestProductsPage}/>*/}
-
+                    <Route
+                        path="/blog"
+                        component={BlogContainer}/>
+                    <Route
+                        path="/documents"
+                        component={DocumentsContainer}/>
+                    <Route
+                        path="/history"
+                        component={HistoryContainer}/>
+                    <Route
+                        path="/library"
+                        component={LibraryContainer}/>
                 </Switch>
-            </div>
+            </Router>
         );
     }
 }
