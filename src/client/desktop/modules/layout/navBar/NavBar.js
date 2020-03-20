@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar } from "react-bootstrap";
 import logo from "../../../../../gerb.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavBar = props => {
   return (
@@ -14,9 +14,26 @@ const NavBar = props => {
           </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="history">История</Nav.Link>
-          <Nav.Link href="news">Новини</Nav.Link>
-          <Nav.Link href="library">Библиотека</Nav.Link>
+          <Link className="btn btn-secondary mb-2 mr-2" role="button" to="/">
+            Начало
+          </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="history"
+          >
+            История
+          </Link>
+          <Link className="btn btn-secondary mb-2 mr-2" role="button" to="news">
+            Новини
+          </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="library"
+          >
+            Библиотека
+          </Link>
         </Nav>
       </Navbar>
     </div>
