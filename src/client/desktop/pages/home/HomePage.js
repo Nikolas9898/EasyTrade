@@ -8,7 +8,7 @@ class HomePage extends React.Component {
     super(props);
 
     this.state = {
-      modalIsOpen:true
+      modalIsOpen:false
     };
   }
 handleModalIsOpen=()=>{
@@ -18,10 +18,7 @@ handleModalIsOpen=()=>{
   render() {
     return (
         <div>
-          <Modall
-          modalIsOpen={this.state.modalIsOpen}
-          setmodalOpen={this.handleModalIsOpen}
-          />
+
         <NavBar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -29,6 +26,10 @@ handleModalIsOpen=()=>{
           <br></br>
           <br></br>
             <p>Западно и Средноевропейски митрополит Антоний</p>
+            <Modall
+                modalIsOpen={this.state.modalIsOpen}
+                setmodalOpen={this.handleModalIsOpen}
+            />
           <p>~Благословение против COVID-19~</p>
         </header>
       </div>
