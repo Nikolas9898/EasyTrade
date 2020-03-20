@@ -9,7 +9,7 @@ const NavBar = props => {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="">Church.bg</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="home">Начало</Nav.Link>
+          <Nav.Link href="/">Начало</Nav.Link>
           <Nav.Link href="history">История</Nav.Link>
           <Nav.Link href="news">Новини</Nav.Link>
           <Nav.Link href="library">Библиотека</Nav.Link>
