@@ -1,17 +1,27 @@
 import React from "react";
 import logo from "../../../../logo119.png";
 import NavBar from "../../modules/layout/navBar/NavBar";
+import Modall from "../../modules/layout/modal/Modal"
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      modalIsOpen:true
+    };
   }
+handleModalIsOpen=()=>{
 
+    this.state.modalIsOpen? this.setState({modalIsOpen:false}):this.setState({modalIsOpen:true})
+};
   render() {
     return (
-      <div>
+        <div>
+          <Modall
+          modalIsOpen={this.state.modalIsOpen}
+          setmodalOpen={this.handleModalIsOpen}
+          />
         <NavBar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
