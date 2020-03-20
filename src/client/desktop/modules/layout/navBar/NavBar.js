@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 
 const NavBar = props => {
   return (
@@ -14,10 +13,6 @@ const NavBar = props => {
           <Nav.Link href="news">Новини</Nav.Link>
           <Nav.Link href="library">Библиотека</Nav.Link>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Търсене</Button>
-        </Form>
       </Navbar>
     </div>
   );
