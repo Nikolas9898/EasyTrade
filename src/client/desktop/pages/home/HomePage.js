@@ -18,18 +18,18 @@ class HomePage extends React.Component {
   };
   render() {
     return (
-      <div>
-        <Modall
-          modalIsOpen={this.state.modalIsOpen}
-          setmodalOpen={this.handleModalIsOpen}
-        />
+        <div>
         <NavBar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <br></br>
           <br></br>
           <br></br>
-          <p>Западно и Средноевропейски митрополит Антоний</p>
+            <p>Западно и Средноевропейски митрополит Антоний</p>
+            <Modall
+                modalIsOpen={this.state.modalIsOpen}
+                setmodalOpen={this.handleModalIsOpen}
+            />
           <p>~Благословение против COVID-19~</p>
         </header>
       </div>
