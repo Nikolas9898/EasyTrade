@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import BlogContainer from "./modules/blog/BlogContainer";
 import DocumentsContainer from "./modules/documents/DocumentsContainer";
-import LibraryContainer from "./modules/library/LibraryContainer";
 import HistoryPage from "./pages/history/HistoryPage";
 import NewsPage from "./pages/news/News";
 import LibraryPage from "./pages/library/LibraryPage";
