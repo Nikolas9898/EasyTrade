@@ -9,30 +9,52 @@ const NavBar = props => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="">
-          <Link to='/'>
-            <img src={logo} className="Nav-Img"/>
+          <Link to="/">
+            <img src={logo} className="Nav-Img" />
           </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <Link className="btn btn-secondary mb-2 mr-2" role="button" to="/">
-            Начало
-          </Link>
           <Link
             className="btn btn-secondary mb-2 mr-2"
             role="button"
-            to="history"
+            to="/news"
           >
-            История
-          </Link>
-          <Link className="btn btn-secondary mb-2 mr-2" role="button" to="news">
             Новини
           </Link>
           <Link
             className="btn btn-secondary mb-2 mr-2"
             role="button"
-            to="library"
+            to="/documents"
+          >
+            Документи
+          </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="/library"
           >
             Библиотека
+          </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="/diocese"
+          >
+            Епархия
+          </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="/history"
+          >
+            История
+          </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="/bishop"
+          >
+            Митрополит
           </Link>
         </Nav>
       </Navbar>
