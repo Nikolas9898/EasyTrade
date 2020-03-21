@@ -13,6 +13,10 @@ git.App {
   }
 }
 
+.Nav-Img{
+  height: 10vmin;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
