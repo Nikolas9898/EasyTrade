@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../../../logo119.png";
 import NavBar from "../../modules/layout/navBar/NavBar";
-import Modall from "../../modules/layout/modal/Modal";
+import Modall from "../../modules/layout/modal/Modal"
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -11,14 +11,17 @@ class HomePage extends React.Component {
       modalIsOpen: false
     };
   }
-  handleModalIsOpen = () => {
-    this.state.modalIsOpen
-      ? this.setState({ modalIsOpen: false })
-      : this.setState({ modalIsOpen: true });
-  };
+handleModalIsOpen=()=>{
+
+    this.state.modalIsOpen? this.setState({modalIsOpen:false}):this.setState({modalIsOpen:true})
+};
   render() {
     return (
         <div>
+          <Modall
+          modalIsOpen={this.state.modalIsOpen}
+          setmodalOpen={this.handleModalIsOpen}
+          />
         <NavBar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -26,10 +29,6 @@ class HomePage extends React.Component {
           <br></br>
           <br></br>
             <p>Западно и Средноевропейски митрополит Антоний</p>
-            <Modall
-                modalIsOpen={this.state.modalIsOpen}
-                setmodalOpen={this.handleModalIsOpen}
-            />
           <p>~Благословение против COVID-19~</p>
         </header>
       </div>
