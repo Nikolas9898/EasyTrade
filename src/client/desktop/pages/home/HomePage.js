@@ -8,7 +8,11 @@ class HomePage extends React.Component {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
+      modalIsOpen:false
+=======
       modalIsOpen: false
+>>>>>>> aad0e3f2da6c55b182650e463e65d40342909898
     };
   }
 handleModalIsOpen=()=>{
