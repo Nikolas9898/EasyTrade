@@ -4,6 +4,8 @@ import { Nav, Navbar } from "react-bootstrap";
 import logo from "../../../../../gerb.png";
 import { Link } from "react-router-dom";
 
+
+
 const NavBar = props => {
   return (
     <div>
@@ -53,9 +55,17 @@ const NavBar = props => {
             className="btn btn-secondary mb-2 mr-2"
             role="button"
             to="/bishop"
+        >
+          Митрополит
+        </Link>
+          <Link
+              className="btn btn-secondary mb-2 mr-2"
+              role="button"
+              to="/registration"
           >
-            Митрополит
+            Регистрация
           </Link>
+
         </Nav>
       </Navbar>
     </div>
