@@ -34,6 +34,13 @@ const NavBar = props => {
           >
             Библиотека
           </Link>
+          <Link
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="registration"
+            >
+            Регистрация
+          </Link>
         </Nav>
       </Navbar>
     </div>
