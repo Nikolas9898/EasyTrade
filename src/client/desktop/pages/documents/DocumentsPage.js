@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import DioceseContainer from "../../modules/diocese/DioceseContainer";
+import React from "react";
+import PropTypes from "prop-types";
+import NavBar from "../../modules/layout/navBar/NavBar";
+import DocumentsContainer from "../../modules/documents/DocumentsContainer";
 
 const DocumentsPage = props => {
-    return (
-        <div>
-<DioceseContainer/>
-        </div>
-    );
+  return (
+    <div>
+      <NavBar />
+      <DocumentsContainer />
+    </div>
+  );
 };
 
-DocumentsPage.propTypes = {
-
-};
+DocumentsPage.propTypes = {};
 
 export default DocumentsPage;

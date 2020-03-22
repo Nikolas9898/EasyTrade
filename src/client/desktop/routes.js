@@ -8,6 +8,7 @@ import BlogPage from "./pages/blog/BlogPage";
 import DocumentsPage from "./pages/documents/DocumentsPage";
 import HomePage from "./pages/home/HomePage";
 import Register from "./modules/registration/Register";
+import BishopPage from "./pages/bishop/BishopPage";
 
 class Routes extends Component {
   render() {
@@ -21,6 +22,7 @@ class Routes extends Component {
           <Route path="/history" component={HistoryPage} />
           <Route path="/library" component={LibraryPage} />
           <Route path="/diocese" component={DiocesePage} />
+          <Route path="/bishop" component={BishopPage} />
           <Route path ="/registration" component={Register}/>
         </Switch>
       </Router>
