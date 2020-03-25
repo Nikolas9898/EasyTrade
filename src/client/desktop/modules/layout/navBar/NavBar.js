@@ -3,14 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar } from "react-bootstrap";
 import logo from "../../../../../gerb.png";
 import { Link } from "react-router-dom";
-
+import NavBarStyl from './NavBarStyl.css';
 
 
 const NavBar = props => {
   return (
-    <div>
+    <div >
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="">
+        <Navbar.Brand href="" className='containerr'>
           <Link to="/">
             <img src={logo} className="Nav-Img" />
           </Link>

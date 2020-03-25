@@ -1,0 +1,23 @@
+.imageBishop {
+  height: 60vmin;
+  pointer-events: none;
+  margin-top:70px;
+  margin-bottom: 50px;
+}
+
+.discription {
+  color: aliceblue;
+  margin-top: 220px;
+  margin-right:80px;
+  text-align: left;
+  font-weight: bold;
+  font-size: larger;
+}
+.text{
+  color: aliceblue;
+  margin-bottom:200px;
+  font-size: medium;
+}
+.component{
+  background-color: #282c34;
+}
