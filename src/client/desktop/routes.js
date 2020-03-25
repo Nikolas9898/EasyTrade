@@ -8,6 +8,7 @@ import BlogPage from "./pages/blog/BlogPage";
 import DocumentsPage from "./pages/documents/DocumentsPage";
 import HomePage from "./pages/home/HomePage";
 import Register from "./modules/registration/Register";
+import Login from "./modules/login/Login";
 import BishopPage from "./pages/bishop/BishopPage";
 
 class Routes extends Component {
@@ -24,6 +25,7 @@ class Routes extends Component {
           <Route path="/diocese" component={DiocesePage} />
           <Route path="/bishop" component={BishopPage} />
           <Route path ="/registration" component={Register}/>
+          <Route path ="/login" component={Login}/>
         </Switch>
       </Router>
     );
