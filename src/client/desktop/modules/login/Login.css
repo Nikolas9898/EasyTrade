@@ -1,10 +1,57 @@
-@media all and (min-width: 480px) {
-    .Login {
-        padding: 60px 0;
-    }
-
-    .Login form {
-        margin: 0 auto;
-        max-width: 320px;
-    }
+.form {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flow;
+    color: white;
 }
+.submit:hover{
+    text-align: center;
+    margin-left: 150px;
+    font-size: 200%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+    width: 20%;
+    border-radius: 12px;
+    border: none;
+    color: #125899;
+    font-weight: bold;
+ }
+.submit{
+    text-align: center;
+    margin-left: 150px;
+    font-size: 200%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #125899;
+    width: 20%;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.login{
+    border: 10px white;
+    text-align: center;
+    color: white;
+    padding-top: 100px;
+
+}
+.label_password{
+    padding-right:20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 200%;
+}
+.label_username{
+    padding-right:70px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 200%;
+}
+.input_form{
+    font-size: 150%;
+}
+
+

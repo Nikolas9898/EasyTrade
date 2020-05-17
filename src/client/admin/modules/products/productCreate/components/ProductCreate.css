@@ -1,0 +1,37 @@
+.create_product{
+    padding-left: 700px;
+    padding-top: 200px;
+}
+.create_title{
+    font-size:25px;
+    padding-right: 350px;
+}
+.form_row{
+   padding-top: 60px;
+    padding-left: 15px;
+}
+.form_body{
+    margin-right: 40px;
+}
+.form_input{
+    font-size:25px;
+}
+.create_button{
+    font-weight: bold;
+    background: lime;
+    color: white;
+    font-size: 25px;
+    margin-left: 220px;
+    margin-top: 50px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+.create_button:hover{
+    background: limegreen;
+    color: white;
+    font-size: 25px;
+    margin-left: 220px;
+    margin-top: 50px;
+    padding-left: 70px;
+    padding-right: 70px;
+}

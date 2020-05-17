@@ -12,7 +12,6 @@ class HomePage extends React.Component {
     };
   }
 handleModalIsOpen=()=>{
-
     this.state.modalIsOpen? this.setState({modalIsOpen:false}):this.setState({modalIsOpen:true})
 };
   render() {
