@@ -1,14 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React,{useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faFolder} from "@fortawesome/free-solid-svg-icons";
 
 
-const TreeChildren = ({ subcategory,category }) => {
+const TreeChildren = ({ subcategory,category,deleteCategory }) => {
+  const title= category === undefined ? '':category.title
   return (
     <div>
-      {console.log(subcategory)}
-
       {category === undefined ? '' : <div>
         <FontAwesomeIcon
             icon={faFolder}
@@ -21,9 +19,9 @@ const TreeChildren = ({ subcategory,category }) => {
             <FontAwesomeIcon
                 icon={faFolder}
             />
-            {subcategory.title}
+            {subcategory.title}<button onClick={()=>deleteCategory(title,subcategory)}>-</button>
             {subcategory.subcategory.length > 0 ? (
-              <TreeChildren subcategory={subcategory} />
+              <TreeChildren subcategory={subcategory} deleteCategory={deleteCategory}/>
             ) : (
               ""
             )}

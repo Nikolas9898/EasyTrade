@@ -19,7 +19,7 @@ const SideBar = props => {
             Продукти
             {window.location.pathname === "/admincp/products" ? (
               <div>
-                <Link className="sideBar_sub_titles">Категории</Link>
+                <Link to={"/admincp/category"} className="sideBar_sub_titles">Категории</Link>
               </div>
             ) : (
               ""

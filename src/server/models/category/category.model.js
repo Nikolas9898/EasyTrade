@@ -11,10 +11,11 @@ const categorySchema = new Schema(
       trim: true,
       minlength: 3
     },
-      parent_id: {
-        type: String,
-        trim: true,
+    parent_id: {
+      type: String,
+      trim: true
     },
+    subcategory: []
   },
   {
     timestamps: true
