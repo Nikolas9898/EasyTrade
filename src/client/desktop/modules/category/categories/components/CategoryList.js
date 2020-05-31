@@ -4,8 +4,8 @@ import './CategoryContainer.css'
 
 const CategoryList = ({ category }) => {
   return (
-    <div className="category" to={'#'}>
-      <Link>
+    <div className="category" >
+      <Link to={`/category/${category.slug}`}>
         {category.title}
       </Link>
     </div>

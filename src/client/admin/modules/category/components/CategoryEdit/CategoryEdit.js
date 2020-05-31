@@ -21,7 +21,7 @@ const CategoryEdit = ({ categories }) => {
         <div>Име на Категорията</div>
         <input type="text"  className="title_input"/>
       </div>
-<button className="category_edit">Създай</button>
+<button className="category_edit">Запиши</button>
     </div>
   );
 };

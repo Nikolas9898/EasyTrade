@@ -1,21 +1,22 @@
 import React from "react";
 import axios from "axios";
+import ReactLoading from 'react-loading';
+import ProductList from "../components/ProductList";
+import CategoryProductsHeader from "./components/CategoryProductsHeader";
 
 class CategoryProductsContainer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      products: []
-    };
+        products: [],
+        isLoading: true,
+        category: ''
+    }
   }
   componentDidMount() {
     this.handleGetProducts();
-  }
-  componentDidUpdate() {
-    if (this.state.products.length === 0) {
-      this.handleGetProducts();
-    }
+    this.handleGetCategory()
   }
 
   handleGetProducts = async () => {
@@ -23,35 +24,47 @@ class CategoryProductsContainer extends React.Component {
       .get("http://localhost:5000/products/")
       .then(response => {
         const category = window.location.pathname.slice(1).search("/") + 2;
-        response.data.map(product => {
+        response.data.map(product =>  {
           if (product.category === window.location.pathname.slice(category)) {
-
-            this.state.products.push({title:'sdsdsd'});
-
+            this.state.products.push(product);
           }
         });
+        this.setState({isLoading:false})
       })
       .catch(function(error) {});
   };
+  handleGetCategory= async ()=>{
+      await axios
+          .get("http://localhost:5000/category/")
+          .then(response => {
+              const slug = window.location.pathname.slice(1).search("/") + 2;
+              response.data.map(category =>  {
+                  if (category.slug === window.location.pathname.slice(slug)) {
+                      this.setState({category:category})
+                  }
+              });
+              this.setState({isLoading:false})
+          })
+          .catch(function(error) {});
+  }
+
   render() {
-    const { products } = this.state;
+    const { products,category,isLoading } = this.state;
+    if(isLoading===true){
+
+      return <ReactLoading type={"spin"} color={"blue"} height={667} width={375} />
+    }
     return (
       <div>
-        {console.log(products)}
-        {/*{products.map(product => {*/}
-        {/*  return (*/}
-        {/*    <div>*/}
-        {/*      {console.log(product)}*/}
-        {/*      {product.title}*/}
-        {/*    </div>*/}
-        {/*  );*/}
-        {/*})}*/}
-        {/*<label>Най-нови продукти:</label>*/}
-        {/*<div className="row">*/}
-        {/*    {products.map(product => {*/}
-        {/*        return <ProductList product={product} />*/}
-        {/*    })}*/}
-        {/*</div>*/}
+        <CategoryProductsHeader category={category}/>
+        <div className="row">
+          {products.map(product => {
+            return (
+                <ProductList product={product}/>
+            );
+          })}
+        </div>
+
       </div>
     );
   }
