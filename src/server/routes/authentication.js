@@ -4,20 +4,33 @@
 
 const router = require("express").Router();
 let User = require("../models/user/user.model");
-let jwt = require('jsonwebtoken');
+let jwt = require("jsonwebtoken");
 // let config = require('../config');
 router.route("/").post((req, res) => {
   User.find()
     .then(users => {
       let user = users.filter(user => user.username === req.body.username);
-      let auth =user[0].password===req.body.password?true:false
-        const token = jwt.sign({
-            id: user[0]._id,
-            username: user[0].username
-        }, 'somesecretkeyforjsonwebtoken');
-     auth ? res.json({ token }):res.status(400).json("Wrong email or password")
+      let auth = user[0].password === req.body.password ? true : false;
+      const token = jwt.sign(
+        {
+          id: user[0]._id,
+          username: user[0].username,
+          isAdmin: user[0].isAdmin
+        },
+        "somesecretkeyforjsonwebtoken"
+      );
+
+      let foundUser = user[0];
+
+      auth
+        ? res.json({ token, user: foundUser })
+        : res.status(400).json("Wrong email or password");
     })
-    .catch(err => res.status(400).json("Error: " + err));
+    .catch(err => {
+      console.log(err.message);
+
+      res.status(400).json("Error: " + err);
+    });
 });
 
 //
@@ -39,6 +52,5 @@ router.route("/").post((req, res) => {
 //     } else {
 //         res.status(401).json({ errors: { form: 'Invalid Credentials' } });
 //     }
-
 
 module.exports = router;
