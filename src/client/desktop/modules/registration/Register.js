@@ -32,7 +32,7 @@ class Register extends React.Component {
     if (data.username.length < 3) {
       error.username = "Името е твърде късо.";
     }
-    console.log(data.password.length ,data.dublicate)
+    console.log(data.password.length, data.dublicate);
     if (data.password !== data.dublicate) {
       error.dublicate = "Паролата не е повторена правилно!";
     }
@@ -41,7 +41,7 @@ class Register extends React.Component {
   handleSubmit = () => {
     const errors = this.validateForm(this.state);
     const isValid = Object.values(errors).filter(Boolean).length <= 0;
-      console.log(this.state)
+    console.log(this.state);
     if (!isValid) {
       this.setState({ error: errors });
       return;
@@ -49,13 +49,19 @@ class Register extends React.Component {
     this.setState({ request: "" });
     const user = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      isAdmin: false
     };
     axios
       .post("http://localhost:5000/users/add", user)
       .then(res => console.log(res.data))
       .catch(() => this.setState({ request: "failed" }));
-   this.setState({username:'',password:'',dublicate:"",request:"Регистрирахте се успешно!"})
+    this.setState({
+      username: "",
+      password: "",
+      dublicate: "",
+      request: "Регистрирахте се успешно!"
+    });
   };
 
   render() {
@@ -79,8 +85,8 @@ class Register extends React.Component {
             />
             <div>
               {this.state.error.username === undefined
-                  ? ""
-                  : this.state.error.username}
+                ? ""
+                : this.state.error.username}
             </div>
           </div>
           <div>
@@ -95,12 +101,14 @@ class Register extends React.Component {
             />
             <div>
               {this.state.error.password === undefined
-                  ? ""
-                  : this.state.error.password}
+                ? ""
+                : this.state.error.password}
             </div>
           </div>
           <div>
-            <label className="register_repeat_password">Повторете паролата</label>
+            <label className="register_repeat_password">
+              Повторете паролата
+            </label>
             <input
               className="input_form"
               type="password"
@@ -110,8 +118,8 @@ class Register extends React.Component {
             />
             <div>
               {this.state.error.dublicate === undefined
-                  ? ""
-                  : this.state.error.dublicate}
+                ? ""
+                : this.state.error.dublicate}
             </div>
           </div>
           <button onClick={this.handleSubmit} className="submit_register">

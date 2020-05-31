@@ -3,6 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRegistered } from "@fortawesome/free-solid-svg-icons";
+import NavBar from "../layout/navBar/NavBar";
 
 class Login extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
-      error: {},
+      error: {}
     };
   }
   handleChange = event => {
@@ -32,7 +33,8 @@ class Login extends React.Component {
     return error;
   };
 
-  handleSubmit = async () => {
+  handleSubmit = async e => {
+    e.preventDefault();
     const errors = this.validateForm(this.state);
     const isValid = Object.values(errors).filter(Boolean).length <= 0;
 
@@ -46,21 +48,34 @@ class Login extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-  await  axios
+    await axios
       .post("http://localhost:5000/auth/", login)
-      .then(req => localStorage.setItem("jwt", req.data.token))
-      .catch(() => this.setState({ request: "failed" }));
-    window.location.href = "/admincp";
+      .then(req => {
+        console.log(req.data);
+        localStorage.setItem("jwt", req.data.token);
+
+        req.data.user.isAdmin
+          ? (window.location.href = "/admincp")
+          : (window.location.href = "/");
+
+        // window.location.href = "/admincp";
+      })
+      .catch(e => {
+        this.setState({ request: "Failed to login" });
+      });
   };
   render() {
     return (
       <div className="form">
+        {" "}
+        <NavBar />
         <div className="logo">
           EasyTrade
           <FontAwesomeIcon className="icon" icon={faRegistered} />
         </div>
         <div className="register_form">Вход</div>
-        <div className="login">
+        <form className="login">
+          {this.state.request && <div>{this.state.request}</div>}
           <div>
             <label className="label_username">Име</label>
             <input
@@ -79,6 +94,7 @@ class Login extends React.Component {
             <label className="label_password">Парола</label>
             <input
               className="input_form"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
@@ -89,10 +105,10 @@ class Login extends React.Component {
                 : this.state.error.password}
             </div>
           </div>
-          <button onClick={this.handleSubmit} className="submit">
+          <button onClick={this.handleSubmit} className="submit" type="submit">
             Влез
           </button>
-        </div>
+        </form>
       </div>
     );
   }
