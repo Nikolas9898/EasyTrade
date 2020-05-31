@@ -30,7 +30,6 @@ app.use("/products", productRouter);
 const categoryRouter = require("./routes/category");
 app.use("/category", categoryRouter);
 
-
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
