@@ -10,7 +10,7 @@ const HomePage = props => {
       <NavBar />
       <div className="container_wrapper">
         <CategoryContainer />
-        <ProductsContainer/>
+        <ProductsContainer />
       </div>
     </div>
   );

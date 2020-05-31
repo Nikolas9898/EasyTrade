@@ -4,15 +4,20 @@ import ProductTableHeader from "./ProductTableHeader";
 import FluidLayoutBody from "../../../layout/FluidLayouBody/FluidLayoutBody.js";
 import ProductsTableRow from "./ProductsTableRow";
 
-const ProductTableList = ({ products }) => {
+const ProductTableList = ({ products, deleteProduct }) => {
   return (
     <FluidLayoutWrapper>
       <FluidLayoutBody>
         <table>
-            <ProductTableHeader />
+          <ProductTableHeader />
           <tbody>
-            {products.map(product => {
-              return <ProductsTableRow product={product} />;
+            {products.reverse().map(product => {
+              return (
+                <ProductsTableRow
+                  product={product}
+                  deleteProduct={deleteProduct}
+                />
+              );
             })}
           </tbody>
         </table>

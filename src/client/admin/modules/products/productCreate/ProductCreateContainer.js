@@ -9,6 +9,7 @@ class ProductCreateContainer extends React.Component {
 
     this.state = {
       title: "",
+      imageLink: "",
       price: 0,
       discount_price: 0,
       category: "",
@@ -46,6 +47,9 @@ class ProductCreateContainer extends React.Component {
     if (data.quantity < 1) {
       error.quantity = "Добавете бройка.";
     }
+    if (data.imageLink < 1) {
+      error.imageLink = "Добавете снимка.";
+    }
     return error;
   };
   handleSubmit = () => {
@@ -56,7 +60,8 @@ class ProductCreateContainer extends React.Component {
       weight,
       category,
       sku,
-      quantity
+      quantity,
+      imageLink
     } = this.state;
     const errors = this.validateForm(this.state);
     const isValid = Object.values(errors).filter(Boolean).length <= 0;
@@ -73,21 +78,25 @@ class ProductCreateContainer extends React.Component {
       category: category,
       sku: sku,
       quantity: quantity,
+      imageLink: imageLink,
       slug: slugify(title, { lower: true, remove: /[():.@><,_{}]/g })
     };
     axios
       .post("http://localhost:5000/products/add", product)
-      .then(res => this.setState({
-        title: "",
-        price: 0,
-        discount_price: 0,
-        category: "",
-        weight: 0,
-        sku: 0,
-        quantity: 0
-      }))
-      .catch((error) => this.setState({ error: "Името или SKU на пеодукта е вече използвано."}));
-
+      .then(res =>
+        this.setState({
+          title: "",
+          price: 0,
+          discount_price: 0,
+          category: "",
+          weight: 0,
+          sku: 0,
+          quantity: 0
+        })
+      )
+      .catch(error =>
+        this.setState({ error: "Името или SKU на пеодукта е вече използвано." })
+      );
   };
   render() {
     const {
@@ -98,10 +107,39 @@ class ProductCreateContainer extends React.Component {
       category,
       sku,
       quantity,
+      imageLink,
       errors
     } = this.state;
     return (
       <div className="create_product">
+        <div>
+          {" "}
+          <div>Снимка на продукта</div>
+          <input
+            className="create_title"
+            name="imageLink"
+            type="text"
+            onChange={this.handleInput}
+            value={imageLink}
+          />
+          {imageLink === "" ? (
+            ""
+          ) : (
+            <img
+              style={{ maxHeight: "400", maxWidth: "500px" }}
+              src={imageLink}
+              alt="product"
+            />
+          )}
+          <div>
+            {errors.imageLink ? (
+              <div style={{ color: "red" }}>{errors.imageLink}</div>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+
         <div>
           {" "}
           <div>Име на продукта</div>
@@ -112,7 +150,7 @@ class ProductCreateContainer extends React.Component {
             onChange={this.handleInput}
             value={title}
           />
-          <div>{errors.title ? errors.title : ""}</div>
+          <div style={{ color: "red" }}>{errors.title ? errors.title : ""}</div>
         </div>
         <div className="form_row">
           <div className="row">
@@ -126,7 +164,9 @@ class ProductCreateContainer extends React.Component {
                 onChange={this.handleInput}
                 value={price}
               />
-              <div>{errors.price ? errors.price : ""}</div>
+              <div style={{ color: "red" }}>
+                {errors.price ? errors.price : ""}
+              </div>
             </div>
             <div>
               {" "}
@@ -138,7 +178,7 @@ class ProductCreateContainer extends React.Component {
                 onChange={this.handleInput}
                 value={discount_price}
               />
-              <div>
+              <div style={{ color: "red" }}>
                 {errors.discount_price ? errors.discount_price : ""}
               </div>
             </div>
@@ -155,7 +195,9 @@ class ProductCreateContainer extends React.Component {
                 onChange={this.handleInput}
                 value={weight}
               />
-              <div>{errors.weight ? errors.weight : ""}</div>
+              <div style={{ color: "red" }}>
+                {errors.weight ? errors.weight : ""}
+              </div>
             </div>
             <div>
               <div>Категория</div>
@@ -166,7 +208,9 @@ class ProductCreateContainer extends React.Component {
                 onChange={this.handleInput}
                 value={category}
               />
-              <div>{errors.category ? errors.category : ""}</div>
+              <div style={{ color: "red" }}>
+                {errors.category ? errors.category : ""}
+              </div>
             </div>
           </div>
         </div>
@@ -181,7 +225,7 @@ class ProductCreateContainer extends React.Component {
                 onChange={this.handleInput}
                 value={sku}
               />
-              <div>{errors.sku ? errors.sku : ""}</div>
+              <div style={{ color: "red" }}>{errors.sku ? errors.sku : ""}</div>
             </div>
             <div>
               <div>Бройка</div>
@@ -193,7 +237,9 @@ class ProductCreateContainer extends React.Component {
                 onChange={this.handleInput}
                 value={quantity}
               />
-              <div>{errors.quantity ? errors.quantity : ""}</div>
+              <div style={{ color: "red" }}>
+                {errors.quantity ? errors.quantity : ""}
+              </div>
             </div>
           </div>
         </div>
