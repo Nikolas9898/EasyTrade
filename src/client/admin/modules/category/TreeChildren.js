@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faFolder} from "@fortawesome/free-solid-svg-icons";
 
 
-const TreeChildren = ({ subcategory,category,deleteCategory }) => {
+const TreeChildren = ({ subcategory,category,editCategory }) => {
   const title= category === undefined ? '':category.title
   return (
     <div>
@@ -15,13 +15,13 @@ const TreeChildren = ({ subcategory,category,deleteCategory }) => {
       }
       {subcategory.subcategory.map(subcategory => {
         return (
-          <div style={{"padding-left":"30px"}}>
+          <div style={{"padding-left":"30px", "cursor":"pointer"}} onClick={()=>editCategory(subcategory)}>
             <FontAwesomeIcon
                 icon={faFolder}
             />
-            {subcategory.title}<button onClick={()=>deleteCategory(title,subcategory)}>-</button>
+            {subcategory.title}
             {subcategory.subcategory.length > 0 ? (
-              <TreeChildren subcategory={subcategory} deleteCategory={deleteCategory}/>
+              <TreeChildren subcategory={subcategory} editCategory={editCategory}/>
             ) : (
               ""
             )}

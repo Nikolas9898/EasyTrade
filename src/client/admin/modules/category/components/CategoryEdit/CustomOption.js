@@ -4,7 +4,6 @@ import React from 'react';
 
 export const CustomOption = props => {
     const { data, innerRef, innerProps } = props;
-    console.log(data.level)
     return data.custom ? (
         <div
             style={{

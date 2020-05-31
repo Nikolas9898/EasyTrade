@@ -3,6 +3,8 @@ import axios from "axios";
 import TreeChildren from "./TreeChildren";
 import "./components/categoryContainer.css";
 import CategoryEdit from "./components/CategoryEdit/CategoryEdit";
+import ReactLoading from "react-loading";
+import slugify from "slugify";
 
 class CategoryContainer extends React.Component {
   constructor(props) {
@@ -13,17 +15,19 @@ class CategoryContainer extends React.Component {
       category: {},
       subcategory: [],
       subcategories: [],
+      parentId: "",
+      title: "",
+      isLoading: true
     };
   }
   componentDidMount() {
     this.handleGetCategory();
   }
-  componentDidUpdate() {
-    if (this.state.subcategory.length < 1) {
-      this.handleGetCategory();
-    }
-  }
-
+  handleInput = event => {
+    this.setState({
+      title: event.target.value
+    });
+  };
   handleGetCategory = async () => {
     await axios
       .get("http://localhost:5000/category/")
@@ -39,6 +43,7 @@ class CategoryContainer extends React.Component {
             this.state.subcategories.push(sub);
           }
         });
+        this.setState({ isLoading: false });
       })
       .catch(function(error) {});
   };
@@ -57,33 +62,71 @@ class CategoryContainer extends React.Component {
       }
     }
   };
-
-  handleEditCategory = category => {
-    console.log(category);
+  handleChangeParent = parent => {
+    this.setState({ parentId: parent.value });
+  };
+  handleCreateCategory = async () => {
+    const category = {
+      parent_id: this.state.parentId,
+      title: this.state.title,
+      slug: slugify(this.state.title)
+    };
+    await axios
+      .post("http://localhost:5000/category/add", category)
+      // .then(req => {
+      //   console.log(req.data);
+      //   localStorage.setItem("jwt", req.data.token);
+      //
+      //   req.data.user.isAdmin
+      //       ? (window.location.href = "/admincp")
+      //       : (window.location.href = "/");
+      //
+      //   // window.location.href = "/admincp";
+      // })
+      .catch(e => {
+        this.setState({ request: "Failed to create" });
+      });
+    this.setState({
+      categories: [],
+      category: {},
+      subcategory: [],
+      subcategories: []
+    });
+    this.handleGetCategory();
   };
   render() {
-    const { subcategories, category, subcategory,categories } = this.state;
+    const { subcategories, isLoading } = this.state;
+    if (isLoading === true) {
+      return (
+        <ReactLoading type={"spin"} color={"blue"} height={300} width={100} />
+      );
+    }
     return (
       <div className="category_wrapper">
         <div className="category_holder">
           <div className="container_categories">
             {subcategories.map(category => {
               return (
-                  <div>
-                    <TreeChildren
-                        subcategory={category}
-                        category={category}
-                        deleteCategory={this.handleDeleteCategory}
-                    />
-                  </div>
+                <div>
+                  <TreeChildren
+                    editCategory={this.handleEditCategory}
+                    subcategory={category}
+                    category={category}
+                  />
+                </div>
               );
             })}
           </div>
           <div className="container_category">
-            <CategoryEdit categories={subcategories}/>
+            <CategoryEdit
+              handleChange={this.handleInput}
+              categories={subcategories}
+              title={this.state.title}
+              parentSelect={this.handleChangeParent}
+              create={this.handleCreateCategory}
+            />
           </div>
         </div>
-
       </div>
     );
   }
