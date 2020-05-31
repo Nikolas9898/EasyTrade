@@ -1,40 +1,20 @@
 import React from "react";
-import logo from "../../../../logo119.png";
+import PropTypes from "prop-types";
 import NavBar from "../../modules/layout/navBar/NavBar";
-import Modall from "../../modules/layout/modal/Modal"
-
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      modalIsOpen:false
-    };
-  }
-handleModalIsOpen=()=>{
-    this.state.modalIsOpen? this.setState({modalIsOpen:false}):this.setState({modalIsOpen:true})
-};
-  render() {
-    return (
-        <div>
-        <NavBar />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <br></br>
-          <br></br>
-          <br></br>
-            <p>Западно и Средноевропейски митрополит Антоний</p>
-
-            <Modall
-                modalIsOpen={this.state.modalIsOpen}
-                setmodalOpen={this.handleModalIsOpen}
-            />
-          <p>~Благословение против COVID-19~</p>
-        </header>
+import CategoryContainer from "../../modules/category/categories/CategoryContainer";
+import "../../modules/layout/Wrapper/LayoutWrapper.css";
+import ProductsContainer from "../../modules/products/ProductsContainer";
+const HomePage = props => {
+  return (
+    <div>
+      <NavBar />
+      <div className="container_wrapper">
+        <CategoryContainer />
+        <ProductsContainer/>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 HomePage.propTypes = {};
 

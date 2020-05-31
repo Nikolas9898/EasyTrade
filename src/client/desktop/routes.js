@@ -10,6 +10,7 @@ import HomePage from "./pages/home/HomePage";
 import Register from "./modules/registration/Register";
 import Login from "./modules/login/Login";
 import BishopPage from "./pages/bishop/BishopPage";
+import CategoryProductsContainer from "./modules/products/categoryProducts/CategoryProductsContainer";
 
 class Routes extends Component {
   render() {
@@ -20,9 +21,9 @@ class Routes extends Component {
           <Route path="/news" component={NewsPage} />
           <Route path="/blog" component={BlogPage} />
           <Route path="/documents" component={DocumentsPage} />
-          <Route path="/history" component={HistoryPage} />
+          <Route path="/category/:slug" component={CategoryProductsContainer} />
           <Route path="/library" component={LibraryPage} />
-          <Route path="/diocese" component={DiocesePage} />
+          <Route path="product/:slug" component={DiocesePage} />
           <Route path="/bishop" component={BishopPage} />
           <Route path ="/registration" component={Register}/>
           <Route path ="/login" component={Login}/>

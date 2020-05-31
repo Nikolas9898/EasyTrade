@@ -9,9 +9,10 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post((req, res) => {
     const title = req.body.title;
+    const slug = req.body.title;
     const subcategory = req.body.subcategory
     const parent_id = req.body.parent_id
-    const newCategory = new Category({ title,subcategory,parent_id});
+    const newCategory = new Category({ title,subcategory,parent_id,slug});
 
         newCategory
             .save()

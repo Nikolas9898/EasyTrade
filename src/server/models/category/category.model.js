@@ -11,6 +11,13 @@ const categorySchema = new Schema(
       trim: true,
       minlength: 3
     },
+      slug:{
+          type: String,
+          required: true,
+          unique: true,
+          trim: true,
+          minlength: 3
+      },
     parent_id: {
       type: String,
       trim: true
