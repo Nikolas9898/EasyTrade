@@ -1,8 +1,13 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-let token = jwt_decode(localStorage.getItem("jwt"));
+let token;
+
+if (localStorage.getItem("jwt") === null) {
+  token = null;
+} else {
+  token = jwt_decode(localStorage.getItem("jwt"));
+}
 
 export function AuthenticatedRoute(props) {
   const loggedUser = token;
