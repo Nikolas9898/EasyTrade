@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import "./components/ProductCreate.css";
 import slugify from "slugify";
+import Select from "react-select";
+import {CustomOption} from "../../category/components/CategoryEdit/CustomOption";
+import {selectCategory} from "../../category/components/CategoryEdit/SelectCategory";
 
 class ProductCreateContainer extends React.Component {
   constructor(props) {
@@ -10,21 +13,64 @@ class ProductCreateContainer extends React.Component {
     this.state = {
       title: "",
       imageLink: "",
+      parentId:'',
       price: 0,
       discount_price: 0,
-      category: "",
+      categories: [],
+      subcategories:[],
       weight: 0,
       sku: 0,
+      isLoading:true,
       quantity: 0,
       errors: {},
-      error: ""
+      error: "",
     };
   }
+
+  componentDidMount() {
+    this.handleGetCategory()
+  }
+
   handleInput = event => {
     this.setState({
       ...this.state,
       [event.target.name]: event.target.value
     });
+  };
+
+  handleChangeParent = parent => {
+    this.setState({ parentId: parent.value });
+  };
+
+  handleGetCategory = async () => {
+    await axios
+        .get("http://localhost:5000/category/")
+        .then(response => {
+          response.data.map(category => {
+            this.handleBuildCategory(category,response.data);
+          });
+          this.state.subcategories.map(sub => {
+            if (!sub.parent_id) {
+              this.state.categories.push(sub);
+            }
+          });
+          this.setState({ isLoading: false });
+        })
+        .catch(function(error) {});
+  };
+  handleBuildCategory = (category,categories) => {
+    let result = categories.filter(
+        sub => sub.parent_id === category._id
+    );
+
+    if (result.length > 0) {
+      category.subcategory = result;
+      this.state.subcategories.push(category);
+    } else {
+      if (!category.parent_id) {
+        this.state.subcategories.push(category);
+      }
+    }
   };
   validateForm = data => {
     const error = {};
@@ -35,7 +81,7 @@ class ProductCreateContainer extends React.Component {
     if (data.price < 1) {
       error.price = "Липсва цена.";
     }
-    if (data.category.length < 3) {
+    if (data.parentId.length < 3) {
       error.category = "Изберете категория.";
     }
     if (data.weight < 1) {
@@ -58,7 +104,7 @@ class ProductCreateContainer extends React.Component {
       price,
       discount_price,
       weight,
-      category,
+      parentId,
       sku,
       quantity,
       imageLink
@@ -75,7 +121,7 @@ class ProductCreateContainer extends React.Component {
       price: price * 100,
       discount_price: discount_price * 100,
       weight: weight * 1000,
-      category: category,
+      category: parentId,
       sku: sku,
       quantity: quantity,
       imageLink: imageLink,
@@ -104,7 +150,7 @@ class ProductCreateContainer extends React.Component {
       price,
       discount_price,
       weight,
-      category,
+      categories,
       sku,
       quantity,
       imageLink,
@@ -142,14 +188,22 @@ class ProductCreateContainer extends React.Component {
 
         <div>
           {" "}
-          <div>Име на продукта</div>
-          <input
-            className="create_title"
-            name="title"
-            type="text"
-            onChange={this.handleInput}
-            value={title}
-          />
+          <div>Категория</div>
+          <div style={{"max-width":"680px"}}>
+            <Select
+                onChange={id => this.handleChangeParent(id)}
+                defaultValue={{
+                  label: "Родител...",
+                  value: ""
+                }}
+                components={{ Option: CustomOption }}
+                options={categories
+                    .map(option => {
+                      return selectCategory(option);
+                    })
+                    .flat()}
+            />
+          </div>
           <div style={{ color: "red" }}>{errors.title ? errors.title : ""}</div>
         </div>
         <div className="form_row">
@@ -200,13 +254,13 @@ class ProductCreateContainer extends React.Component {
               </div>
             </div>
             <div>
-              <div>Категория</div>
+              <div>Заглавие</div>
               <input
-                className="form_input"
-                name="category"
-                type="text"
-                onChange={this.handleInput}
-                value={category}
+                  className="form_input"
+                  name="title"
+                  type="text"
+                  onChange={this.handleInput}
+                  value={title}
               />
               <div style={{ color: "red" }}>
                 {errors.category ? errors.category : ""}

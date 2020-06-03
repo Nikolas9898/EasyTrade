@@ -73,16 +73,6 @@ class CategoryContainer extends React.Component {
     };
     await axios
       .post("http://localhost:5000/category/add", category)
-      // .then(req => {
-      //   console.log(req.data);
-      //   localStorage.setItem("jwt", req.data.token);
-      //
-      //   req.data.user.isAdmin
-      //       ? (window.location.href = "/admincp")
-      //       : (window.location.href = "/");
-      //
-      //   // window.location.href = "/admincp";
-      // })
       .catch(e => {
         this.setState({ request: "Failed to create" });
       });

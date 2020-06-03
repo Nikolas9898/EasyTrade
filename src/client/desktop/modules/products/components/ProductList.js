@@ -14,7 +14,7 @@ const ProductList = ({ product }) => {
       <p className="price">{(product.price / 1000).toFixed(2)}лв.</p>
       <p>Категория : {product.category}</p>
       <p>
-        <button>Add to Cart</button>
+        <button >КУПИ СЕГА</button>
       </p>
     </div>
   );

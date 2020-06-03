@@ -9,6 +9,7 @@ const CategoryEdit = ({ categories, parentSelect, handleChange,title,create }) =
   return (
     <div>
       <div className="parent_input">
+          {console.log(categories)}
         <Select
           onChange={id => parentSelect(id)}
           defaultValue={{
