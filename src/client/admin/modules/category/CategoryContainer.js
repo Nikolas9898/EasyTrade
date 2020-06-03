@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 import TreeChildren from "./TreeChildren";
 import "./components/categoryContainer.css";
-import CategoryEdit from "./components/CategoryEdit/CategoryEdit";
+import CategoryCreate from "./components/CategoryCreate/CategoryCreate";
 import ReactLoading from "react-loading";
 import slugify from "slugify";
+import CategoryEdit from "./components/CategoryEdit";
 
 class CategoryContainer extends React.Component {
   constructor(props) {
@@ -16,8 +17,11 @@ class CategoryContainer extends React.Component {
       subcategory: [],
       subcategories: [],
       parentId: "",
+      parentTitle:'',
       title: "",
-      isLoading: true
+      isLoading: true,
+      selected_category: [],
+      selected_category_parent: []
     };
   }
   componentDidMount() {
@@ -26,6 +30,13 @@ class CategoryContainer extends React.Component {
   handleInput = event => {
     this.setState({
       title: event.target.value
+    });
+  };
+  handleChange = event => {
+    this.setState({selected_category:[{
+      ...this.state.selected_category[0],
+        title: event.target.value
+      }]
     });
   };
   handleGetCategory = async () => {
@@ -63,7 +74,7 @@ class CategoryContainer extends React.Component {
     }
   };
   handleChangeParent = parent => {
-    this.setState({ parentId: parent.value });
+    this.setState({ parentId: parent.value,parentTitle:parent.label });
   };
   handleCreateCategory = async () => {
     const category = {
@@ -71,6 +82,7 @@ class CategoryContainer extends React.Component {
       title: this.state.title,
       slug: slugify(this.state.title)
     };
+    console.log(category)
     await axios
       .post("http://localhost:5000/category/add", category)
       .catch(e => {
@@ -84,8 +96,65 @@ class CategoryContainer extends React.Component {
     });
     this.handleGetCategory();
   };
+  handleSelectCategory = async category => {
+    await this.setState({
+      selected_category: [],
+      selected_category_parent: []
+    });
+    this.state.selected_category.push(category);
+    if (category.parent_id)
+      await this.state.categories.map(option => {
+        if (category.parent_id === option._id) {
+          this.state.selected_category_parent.push(option);
+        }
+      });
+    this.setState({});
+  };
+  handleEditCategory = id => {
+    const category = {
+      parent_id: this.state.parentId,
+      title: this.state.selected_category[0].title,
+      slug: slugify(this.state.selected_category[0].title)
+    };
+    console.log(category,id);
+    axios
+      .put(`http://localhost:5000/category/edit/${id}`, category)
+        .then(response => {
+          this.setState({
+            categories: [],
+            category: {},
+            subcategory: [],
+            subcategories: [],
+            selected_category: [],
+            selected_category_parent: []
+          });
+          this.handleGetCategory();
+        })
+        .catch(function(error) {});
+  };
+  handleDeleteCategory = id => {
+    axios
+      .delete(`http://localhost:5000/category/delete/${id}`)
+      .then(response => {
+        this.setState({
+          categories: [],
+          category: {},
+          subcategory: [],
+          subcategories: [],
+          selected_category: [],
+          selected_category_parent: []
+        });
+        this.handleGetCategory();
+      })
+      .catch(function(error) {});
+  };
   render() {
-    const { subcategories, isLoading } = this.state;
+    const {
+      subcategories,
+      isLoading,
+      selected_category,
+      selected_category_parent
+    } = this.state;
     if (isLoading === true) {
       return (
         <ReactLoading type={"spin"} color={"blue"} height={300} width={100} />
@@ -99,7 +168,7 @@ class CategoryContainer extends React.Component {
               return (
                 <div>
                   <TreeChildren
-                    editCategory={this.handleEditCategory}
+                    editCategory={this.handleSelectCategory}
                     subcategory={category}
                     category={category}
                   />
@@ -108,13 +177,26 @@ class CategoryContainer extends React.Component {
             })}
           </div>
           <div className="container_category">
-            <CategoryEdit
-              handleChange={this.handleInput}
-              categories={subcategories}
-              title={this.state.title}
-              parentSelect={this.handleChangeParent}
-              create={this.handleCreateCategory}
-            />
+            {selected_category.length === 0 ? (
+              <CategoryCreate
+                handleChange={this.handleInput}
+                categories={subcategories}
+                title={this.state.title}
+                parentSelect={this.handleChangeParent}
+                create={this.handleCreateCategory}
+              />
+            ) : (
+              <CategoryEdit
+                editCategory={this.handleEditCategory}
+                deleteCategory={this.handleDeleteCategory}
+                parent={selected_category_parent[0]}
+                handleChange={this.handleChange}
+                categories={subcategories}
+                category={selected_category[0]}
+                parentSelect={this.handleChangeParent}
+                create={this.handleCreateCategory}
+              />
+            )}
           </div>
         </div>
       </div>

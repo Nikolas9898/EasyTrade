@@ -36,6 +36,8 @@ router.route('/delete/:id').delete((req, res) => {
 router.route('/edit/:id').put((req, res) => {
     Category.findById(req.params.id)
         .then(category => {
+            category.slug = req.body.slug;
+            category.parent_id = req.body.parent_id
             category.title = req.body.title;
             category.subcategory = req.body.subcategory;
             category.date = Date.parse(req.body.date);

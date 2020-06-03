@@ -5,11 +5,10 @@ import Select from "react-select";
 import { CustomOption } from "./CustomOption";
 import { selectCategory } from "./SelectCategory";
 
-const CategoryEdit = ({ categories, parentSelect, handleChange,title,create }) => {
+const CategoryCreate = ({ categories, parentSelect, handleChange,title,create }) => {
   return (
     <div>
       <div className="parent_input">
-          {console.log(categories)}
         <Select
           onChange={id => parentSelect(id)}
           defaultValue={{
@@ -39,6 +38,6 @@ const CategoryEdit = ({ categories, parentSelect, handleChange,title,create }) =
   );
 };
 
-CategoryEdit.propTypes = {};
+CategoryCreate.propTypes = {};
 
-export default CategoryEdit;
+export default CategoryCreate;
