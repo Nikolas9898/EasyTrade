@@ -55,6 +55,7 @@ router.route("/update/:id").put((req, res) => {
     .then(product => {
       product.title = req.body.title;
       product.category = req.body.category;
+        product.category_slug = req.body.category_slug;
       product.price = req.body.price;
       product.discount_price = req.body.discount_price;
       product.slug = req.body.slug;

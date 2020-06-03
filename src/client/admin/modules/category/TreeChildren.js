@@ -8,16 +8,18 @@ const TreeChildren = ({ subcategory,category,editCategory }) => {
   return (
     <div>
       {category === undefined ? '' :
-          <div style={{"cursor":"pointer"}} onClick={()=>editCategory(category)}>
+          <div style={{"cursor":"pointer","font-size":"25px"}} onClick={()=>editCategory(category)}>
         <FontAwesomeIcon
             icon={faFolder}
+            style={{"margin-right":"5px"}}
         />{category.title}
       </div>
       }
       {subcategory.subcategory.map(subcategory => {
         return (
-          <div style={{"padding-left":"30px", "cursor":"pointer"}} onClick={()=>editCategory(subcategory)}>
+          <div style={{"padding-left":"30px", "cursor":"pointer","font-size":"25px"}} onClick={()=>editCategory(subcategory)}>
             <FontAwesomeIcon
+                style={{"margin-right":"5px"}}
                 icon={faFolder}
             />
             {subcategory.title}

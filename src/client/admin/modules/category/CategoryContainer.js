@@ -54,6 +54,7 @@ class CategoryContainer extends React.Component {
             this.state.subcategories.push(sub);
           }
         });
+
         this.setState({ isLoading: false });
       })
       .catch(function(error) {});
@@ -78,11 +79,10 @@ class CategoryContainer extends React.Component {
   };
   handleCreateCategory = async () => {
     const category = {
-      parent_id: this.state.parentId,
+      parent_id: this.state.parentId===""?"":"",
       title: this.state.title,
       slug: slugify(this.state.title)
     };
-    console.log(category)
     await axios
       .post("http://localhost:5000/category/add", category)
       .catch(e => {

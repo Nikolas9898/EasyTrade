@@ -20,17 +20,20 @@ const SideBar = props => {
             }
           >
             Продукти
-            {window.location.pathname === "/admincp/products" ? (
-              <div>
-                <Link to={"/admincp/category"} className="sideBar_sub_titles">
-                  Категории
-                </Link>
-              </div>
-            ) : (
-              ""
-            )}
           </Link>
         </li>
+          <li className="sideBar_titles">
+              <Link
+                  to={"/admincp/category"}
+                  className={
+                      window.location.pathname === "/admincp/category"
+                          ? "sideBar_titles_hover"
+                          : "sideBar_titles"
+                  }
+              >
+                  Категории
+              </Link>
+          </li>
         <li className="sideBar_titles">
           <Link
             to={"/admincp/users"}
@@ -48,11 +51,7 @@ const SideBar = props => {
           <a
             href="/"
             target="_blank"
-            className={
-              window.location.pathname === "/admincp/users"
-                ? "sideBar_titles_hover"
-                : "sideBar_titles"
-            }
+            className="sideBar_titles"
           >
             <FontAwesomeIcon icon={faHome} />
           </a>

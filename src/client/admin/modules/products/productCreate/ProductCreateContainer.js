@@ -13,7 +13,7 @@ class ProductCreateContainer extends React.Component {
     this.state = {
       title: "",
       imageLink: "",
-      parentId:'',
+      category_title:'',
       price: 0,
       discount_price: 0,
       categories: [],
@@ -39,7 +39,7 @@ class ProductCreateContainer extends React.Component {
   };
 
   handleChangeParent = parent => {
-    this.setState({ parentId: parent.value });
+    this.setState({ category_title: parent.label });
   };
 
   handleGetCategory = async () => {
@@ -81,7 +81,7 @@ class ProductCreateContainer extends React.Component {
     if (data.price < 1) {
       error.price = "Липсва цена.";
     }
-    if (data.parentId.length < 3) {
+    if (data.category_title.length < 3) {
       error.category = "Изберете категория.";
     }
     if (data.weight < 1) {
@@ -104,7 +104,7 @@ class ProductCreateContainer extends React.Component {
       price,
       discount_price,
       weight,
-      parentId,
+      category_title,
       sku,
       quantity,
       imageLink
@@ -121,8 +121,8 @@ class ProductCreateContainer extends React.Component {
       price: price * 100,
       discount_price: discount_price * 100,
       weight: weight * 1000,
-      category: parentId,
-      category_slug: slugify(parentId),
+      category: category_title,
+      category_slug: slugify(category_title),
       sku: sku,
       quantity: quantity,
       imageLink: imageLink,

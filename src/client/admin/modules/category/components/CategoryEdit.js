@@ -13,9 +13,13 @@ const CategoryEdit = ({
   handleChange,
   category,
 }) => {
+    const a=[{parent_id:'',title:'Без главна категория',slug:'',subcategory:[]}]
+    const b=categories
+    const categoriess=a.concat(b)
   return (
     <div>
       <div className="parent_input">
+          {console.log(categoriess)}
         <Select
           onChange={id => parentSelect(id)}
           defaultValue={{
@@ -23,12 +27,13 @@ const CategoryEdit = ({
             value: `${parent === undefined ? "" : parent._id}`
           }}
           components={{ Option: CustomOption }}
-          options={categories
+          options={categoriess
             .map(option => {
               return selectCategory(option);
             })
             .flat()}
-        />
+        >
+        </Select>
       </div>
       <div className="label_title_input">
         <div>Име на Категорията</div>

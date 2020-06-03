@@ -13,11 +13,11 @@ class ProductEditContainer extends React.Component {
     this.state = {
       title: "",
       imageLink: "",
-      parentId: "",
+      category_title: "",
       price: 0,
       discount_price: 0,
       categories: [],
-      subcategories: [],
+      subcategories: [{parent_id:''}],
       weight: 0,
       sku: 0,
       editedProductId: this.props.editedProductId,
@@ -41,7 +41,7 @@ class ProductEditContainer extends React.Component {
   };
 
   handleChangeParent = parent => {
-    this.setState({ parentId: parent.value });
+    this.setState({ category_title: parent.label });
   };
 
   handleGetProductById = async () => {
@@ -99,7 +99,7 @@ class ProductEditContainer extends React.Component {
     if (data.price < 1) {
       error.price = "Липсва цена.";
     }
-    if (data.parentId.length < 3) {
+    if (data.category_title.length < 3) {
       error.category = "Изберете категория.";
     }
     if (data.weight < 1) {
@@ -122,7 +122,7 @@ class ProductEditContainer extends React.Component {
       price,
       discount_price,
       weight,
-      parentId,
+      category_title,
       sku,
       quantity,
       imageLink
@@ -139,7 +139,8 @@ class ProductEditContainer extends React.Component {
       price: price * 100,
       discount_price: discount_price * 100,
       weight: weight * 1000,
-      category: parentId,
+      category: category_title,
+      category_slug:slugify(category_title, { lower: true, remove: /[():.@><,_{}]/g }),
       sku: sku,
       quantity: quantity,
       imageLink: imageLink,
@@ -155,7 +156,7 @@ class ProductEditContainer extends React.Component {
           title: "",
           price: 0,
           discount_price: 0,
-          category: "",
+          category_title:"",
           weight: 0,
           sku: 0,
           quantity: 0

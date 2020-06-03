@@ -6,6 +6,9 @@ import { CustomOption } from "./CustomOption";
 import { selectCategory } from "./SelectCategory";
 
 const CategoryCreate = ({ categories, parentSelect, handleChange,title,create }) => {
+    const a=[{parent_id:'',title:'Без главна категория',slug:'',subcategory:[]}]
+    const b=categories
+    const categoriess=a.concat(b)
   return (
     <div>
       <div className="parent_input">
@@ -16,7 +19,7 @@ const CategoryCreate = ({ categories, parentSelect, handleChange,title,create })
             value: ""
           }}
           components={{ Option: CustomOption }}
-          options={categories
+          options={categoriess
             .map(option => {
               return selectCategory(option);
             })

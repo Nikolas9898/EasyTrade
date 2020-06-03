@@ -5,12 +5,26 @@
   text-align: center;
   font-family: arial;
 }
-
-.price {
+.old_price{
+  text-decoration: line-through;
+  padding-left: 20px;
   color: grey;
-  font-size: 22px;
+  font-size: 20px;
+  display: flex;
 }
+.price {
 
+  padding-left: 20px;
+  color: grey;
+  font-size: 20px;
+  display: flex;
+}
+.dis_price {
+  padding-left: 20px;
+  color: red;
+  font-size: 25px;
+  display: flex;
+}
 .card button {
   border: none;
   outline: 0;

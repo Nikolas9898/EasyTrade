@@ -8,7 +8,7 @@ export const selectCategory = (category,categories = [],level=1) => {
       slug:category.slug,
       level: level,
   });
-  if (category) {
+  if (category.subcategory) {
     category.subcategory.map(option => {
       selectCategory(option,categories,level+1);
     });

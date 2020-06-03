@@ -28,6 +28,7 @@ class ProductsContainer extends React.Component {
       <div>
         <label>Най-нови продукти:</label>
         <div className="row">
+          {console.log(products)}
           {products.map(product => {
             return <ProductList product={product} />;
           })}
