@@ -39,6 +39,12 @@ class AdminRoutes extends Component {
             path="/admincp/category"
             component={CategoryPage}
           />
+
+          <AuthenticatedRoute
+            exact
+            path="/admincp/product/edit/:id"
+            component={ProductEditPage}
+          />
         </Switch>
       </Router>
     );
