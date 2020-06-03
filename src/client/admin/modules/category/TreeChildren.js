@@ -4,10 +4,11 @@ import {faFolder} from "@fortawesome/free-solid-svg-icons";
 
 
 const TreeChildren = ({ subcategory,category,editCategory }) => {
-  const title= category === undefined ? '':category.title
+
   return (
     <div>
-      {category === undefined ? '' : <div>
+      {category === undefined ? '' :
+          <div style={{"cursor":"pointer"}} onClick={()=>editCategory(category)}>
         <FontAwesomeIcon
             icon={faFolder}
         />{category.title}
