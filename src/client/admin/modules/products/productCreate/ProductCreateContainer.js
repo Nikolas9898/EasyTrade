@@ -122,6 +122,7 @@ class ProductCreateContainer extends React.Component {
       discount_price: discount_price * 100,
       weight: weight * 1000,
       category: parentId,
+      category_slug: slugify(parentId),
       sku: sku,
       quantity: quantity,
       imageLink: imageLink,
