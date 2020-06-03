@@ -1,17 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import SideBar from "../../../modules/layout/SideBar/SideBar";
+import ProductEditContainer from "../../../modules/products/productEdit/ProductEditContainer";
 
 const ProductEditPage = props => {
-    return (
-        <div>
-<SideBar/>
-        </div>
-    );
+  return (
+    <div>
+      <SideBar />
+
+      <ProductEditContainer editedProductId={props.computedMatch.params.id} />
+    </div>
+  );
 };
 
-ProductEditPage.propTypes = {
-
-};
+ProductEditPage.propTypes = {};
 
 export default ProductEditPage;
