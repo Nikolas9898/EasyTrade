@@ -1,11 +1,22 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar } from "react-bootstrap";
-import logo from "../../../../../gerb.png";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRegistered } from "@fortawesome/free-solid-svg-icons";
 import "./NavBarStyl.css";
+import jwt_decode from "jwt-decode";
+
+let user;
+
+if (localStorage.getItem("jwt") === null) {
+  user = null;
+} else {
+  user = jwt_decode(localStorage.getItem("jwt"));
+}
+
+function Exit() {
+  localStorage.removeItem("jwt");
+  window.location.reload();
+}
 
 const NavBar = props => {
   return (
@@ -17,20 +28,35 @@ const NavBar = props => {
           </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/registration"
-          >
-            Регистрация
-          </Link>
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/login"
-          >
-            Вход
-          </Link>
+          {user ? (
+            <div className="profile">
+              {" "}
+              Здравей {user.username}
+              <button
+                className="btn btn-secondary mb-2 mr-2"
+                onClick={() => Exit()}
+              >
+                Изход
+              </button>
+            </div>
+          ) : (
+            <div>
+              <Link
+                className="btn btn-secondary mb-2 mr-2"
+                role="button"
+                to="/registration"
+              >
+                Регистрация
+              </Link>
+              <Link
+                className="btn btn-secondary mb-2 mr-2"
+                role="button"
+                to="/login"
+              >
+                Вход
+              </Link>
+            </div>
+          )}
         </Nav>
       </Navbar>
     </div>

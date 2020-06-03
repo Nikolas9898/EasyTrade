@@ -321,7 +321,7 @@ class ProductEditContainer extends React.Component {
           </div>
         </div>
         <button className="create_button" onClick={this.handleSubmit}>
-          Създай
+          Редактирай
         </button>
         <div>{this.state.error}</div>
       </div>
