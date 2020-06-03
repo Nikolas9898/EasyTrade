@@ -2,6 +2,7 @@ import React from "react";
 import ProductTableRow from "./shared/productsTableRow/ProductTableRow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const ProductsTableRow = ({ product, deleteProduct }) => {
   return (
@@ -26,13 +27,14 @@ const ProductsTableRow = ({ product, deleteProduct }) => {
           icon={faTrash}
           onClick={() => deleteProduct(product._id)}
         />
-        <FontAwesomeIcon
-          className="edit_user"
-          icon={faEdit}
-          onClick={() => {
-            deleteProduct(product._id);
-          }}
-        />
+
+        <Link
+          to={`/admincp/product/edit/${product._id}`}
+          style={{ textDecoration: "none" }}
+        >
+          {" "}
+          <FontAwesomeIcon className="edit_user" icon={faEdit} />
+        </Link>
       </td>
     </ProductTableRow>
   );

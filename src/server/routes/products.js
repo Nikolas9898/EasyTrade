@@ -51,17 +51,18 @@ router.route("/delete/:id").delete((req, res) => {
 router.route("/update/:id").put((req, res) => {
   Product.findById(req.params.id)
     .then(product => {
-      product.title = req.body.username;
-      product.category = req.body.password;
-      product.price = req.body.password;
-      product.discount_price = req.body.password;
-      product.slug = req.body.password;
-      product.quantity = req.body.password;
+      product.title = req.body.title;
+      product.category = req.body.category;
+      product.price = req.body.price;
+      product.discount_price = req.body.discount_price;
+      product.slug = req.body.slug;
+      product.quantity = req.body.quantity;
+      product.imageLink = req.body.imageLink;
       product.date = Date.parse(req.body.date);
 
       product
         .save()
-        .then(() => res.json("Exercise updated!"))
+        .then(() => res.json(product))
         .catch(err => res.status(400).json("Error: " + err));
     })
     .catch(err => res.status(400).json("Error: " + err));
