@@ -3,8 +3,8 @@ import axios from "axios";
 import "../productCreate/components/ProductCreate.css";
 import slugify from "slugify";
 import Select from "react-select";
-import { CustomOption } from "../../category/components/CategoryEdit/CustomOption";
-import { selectCategory } from "../../category/components/CategoryEdit/SelectCategory";
+import { CustomOption } from "../../category/components/CategoryCreate/CustomOption";
+import { selectCategory } from "../../category/components/CategoryCreate/SelectCategory";
 
 class ProductEditContainer extends React.Component {
   constructor(props) {
