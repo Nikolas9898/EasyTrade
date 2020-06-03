@@ -48,6 +48,12 @@ const productSchema = new Schema(
       trim: true,
       minlength: 3
     },
+    category_slug: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 3
+    },
     title: {
       type: String,
       required: true,

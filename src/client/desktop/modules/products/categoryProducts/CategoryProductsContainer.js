@@ -25,7 +25,7 @@ class CategoryProductsContainer extends React.Component {
       .then(response => {
         const category = window.location.pathname.slice(1).search("/") + 2;
         response.data.map(product =>  {
-          if (product.category === window.location.pathname.slice(category)) {
+          if (product.category_slug === window.location.pathname.slice(category)) {
             this.state.products.push(product);
           }
         });

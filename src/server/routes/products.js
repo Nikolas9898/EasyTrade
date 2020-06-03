@@ -1,6 +1,6 @@
 const router = require("express").Router();
 let Product = require("../models/products/product.model");
-const auth = require("../middlewares/authenticate");
+
 
 router.route("/").get((req, res) => {
   Product.find()
@@ -13,6 +13,7 @@ router.route("/add").post((req, res) => {
   const sku = req.body.sku;
   const weight = req.body.weight;
   const category = req.body.category;
+  const category_slug = req.body.category_slug;
   const price = req.body.price;
   const discount_price = req.body.discount_price;
   const imageLink = req.body.imageLink;
@@ -27,7 +28,8 @@ router.route("/add").post((req, res) => {
     quantity,
     sku,
     weight,
-    imageLink
+    imageLink,
+    category_slug
   });
 
   newProduct
