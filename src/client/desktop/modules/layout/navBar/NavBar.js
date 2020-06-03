@@ -3,76 +3,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar } from "react-bootstrap";
 import logo from "../../../../../gerb.png";
 import { Link } from "react-router-dom";
-import NavBarStyl from './NavBarStyl.css';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRegistered } from "@fortawesome/free-solid-svg-icons";
+import "./NavBarStyl.css";
 
 const NavBar = props => {
   return (
-    <div >
+    <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="" className='containerr'>
-          <Link to="/">
-            <img src={logo} className="Nav-Img" />
+        <Navbar.Brand href="" className="containerr">
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <div className="navbarLogo">EasyTrade</div>
           </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Link
             className="btn btn-secondary mb-2 mr-2"
             role="button"
-            to="/news"
-          >
-            Новини
-          </Link>
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/documents"
-          >
-            Документи
-          </Link>
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/library"
-          >
-            Библиотека
-          </Link>
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/diocese"
-          >
-            Епархия
-          </Link>
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/history"
-          >
-            История
-          </Link>
-          <Link
-            className="btn btn-secondary mb-2 mr-2"
-            role="button"
-            to="/bishop"
-        >
-          Митрополит
-        </Link>
-          <Link
-              className="btn btn-secondary mb-2 mr-2"
-              role="button"
-              to="/registration"
+            to="/registration"
           >
             Регистрация
           </Link>
           <Link
-              className="btn btn-secondary mb-2 mr-2"
-              role="button"
-              to="/login"
+            className="btn btn-secondary mb-2 mr-2"
+            role="button"
+            to="/login"
           >
             Вход
           </Link>
-
         </Nav>
       </Navbar>
     </div>

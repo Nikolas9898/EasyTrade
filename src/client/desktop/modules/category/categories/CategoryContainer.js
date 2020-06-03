@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import CategoryList from "./components/CategoryList";
-import './components/CategoryContainer.css'
-
+import "./components/CategoryContainer.css";
+import "./components/CategoryList.css";
 class CategoryContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -14,32 +14,30 @@ class CategoryContainer extends React.Component {
   componentDidMount() {
     this.handleGetCategory();
   }
-    handleGetCategory = async () => {
+  handleGetCategory = async () => {
     axios
       .get("http://localhost:5000/category/")
-      .then (response =>  {
-        this.setState({categories:response.data})
+      .then(response => {
+        this.setState({ categories: response.data });
       })
       .catch(function(error) {});
   };
   render() {
     const { categories } = this.state;
-    const parents =[]
-    categories.map(category=>{
-      if(!category.parent_id){
-        parents.push(category)
+    const parents = [];
+    categories.map(category => {
+      if (!category.parent_id) {
+        parents.push(category);
       }
-    })
+    });
     return (
-        <div>
-          <label>Популярни категории :</label>
-          <div className="row">
-            {parents.map(category => {
-              return <CategoryList category={category} />
-            })}
-          </div>
+      <div style={{ fontSize: "30px" }}>
+        <div className="sidenav">
+          {parents.map(category => {
+            return <CategoryList category={category} />;
+          })}
         </div>
-
+      </div>
     );
   }
 }

@@ -8,7 +8,7 @@ const HomePage = props => {
   return (
     <div>
       <NavBar />
-      <div className="container_wrapper">
+      <div style={{ display: "flex" }}>
         <CategoryContainer />
         <ProductsContainer />
       </div>
