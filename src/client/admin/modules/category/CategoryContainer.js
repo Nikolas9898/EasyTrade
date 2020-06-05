@@ -78,8 +78,9 @@ class CategoryContainer extends React.Component {
     this.setState({ parentId: parent.value,parentTitle:parent.label });
   };
   handleCreateCategory = async () => {
+
     const category = {
-      parent_id: this.state.parentId===""?"":"",
+      parent_id: this.state.parentId===undefined?"":this.state.parentId,
       title: this.state.title,
       slug: slugify(this.state.title)
     };
