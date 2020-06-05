@@ -18,7 +18,7 @@ class ProductsContainer extends React.Component {
     axios
       .get("http://localhost:5000/products/")
       .then(response => {
-        this.setState({ products: response.data.slice(0, 9) });
+        this.setState({ products: response.data.slice(0, 9).reverse() });
       })
       .catch(function(error) {});
   };
