@@ -5,21 +5,26 @@ import { CustomOption } from "./CategoryCreate/CustomOption";
 import { selectCategory } from "./CategoryCreate/SelectCategory";
 
 const CategoryEdit = ({
-    editCategory,
+  editCategory,
   deleteCategory,
   parent,
   categories,
   parentSelect,
   handleChange,
   category,
+  back_to_create
 }) => {
-    const a=[{parent_id:'',title:'Без главна категория',slug:'',subcategory:[]}]
-    const b=categories
-    const categoriess=a.concat(b)
+  const a = [
+    { parent_id: "", title: "Без главна категория", slug: "", subcategory: [] }
+  ];
+  const b = categories;
+  const categoriess = a.concat(b);
   return (
     <div>
       <div className="parent_input">
-          {console.log(categoriess)}
+        <button className="category_edit" onClick={back_to_create}>
+          назад към създване
+        </button>
         <Select
           onChange={id => parentSelect(id)}
           defaultValue={{
@@ -32,8 +37,7 @@ const CategoryEdit = ({
               return selectCategory(option);
             })
             .flat()}
-        >
-        </Select>
+        ></Select>
       </div>
       <div className="label_title_input">
         <div>Име на Категорията</div>
@@ -44,7 +48,10 @@ const CategoryEdit = ({
           onChange={handleChange}
         />
       </div>
-      <button className="category_edit" onClick={()=>editCategory(category._id)}>
+      <button
+        className="category_edit"
+        onClick={() => editCategory(category._id)}
+      >
         Редактирай
       </button>
       {category.subcategory.length === 0 ? (
@@ -55,9 +62,9 @@ const CategoryEdit = ({
           Изтрий
         </button>
       ) : (
-          <div style={{"color":"white"}}>
-              за да можете да изтриете категорията, тя не трябва да има подкатегории
-          </div>
+        <div style={{ color: "white" }}>
+          за да можете да изтриете категорията, тя не трябва да има подкатегории
+        </div>
       )}
     </div>
   );

@@ -148,6 +148,9 @@ class CategoryContainer extends React.Component {
       })
       .catch(function(error) {});
   };
+  handleBackToCreate=()=>{
+    this.setState({selected_category:[]})
+  }
   render() {
     const {
       subcategories,
@@ -187,6 +190,7 @@ class CategoryContainer extends React.Component {
               />
             ) : (
               <CategoryEdit
+                  back_to_create={this.handleBackToCreate}
                 editCategory={this.handleEditCategory}
                 deleteCategory={this.handleDeleteCategory}
                 parent={selected_category_parent[0]}
