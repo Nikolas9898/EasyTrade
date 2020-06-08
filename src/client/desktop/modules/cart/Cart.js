@@ -12,7 +12,11 @@ const Cart = props => {
   cart.map(item => {
     allPrice += item.price;
   });
-  console.log(allPrice/100)
+
+  const MakeOrder = () => {
+    setCart([]);
+  };
+
   return (
     <div style={{ margin: "auto", "max-width": "600px" }}>
       {cart.length === 0 ? (
@@ -24,10 +28,13 @@ const Cart = props => {
           ))}
         </div>
       )}
-      <div >
-       Общо: {allPrice/100} лв.
-      </div>
-        <button>Купи всичко и си еби майката</button>
+      <div>Общо: {allPrice / 100} лв.</div>
+      <button
+        onClick={MakeOrder}
+        style={{ backgroundColor: "#008CBA", color: "white" }}
+      >
+        Купи
+      </button>
     </div>
   );
 };
