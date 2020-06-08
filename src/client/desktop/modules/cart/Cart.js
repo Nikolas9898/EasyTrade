@@ -2,22 +2,32 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { CartContext } from "../../cartContext/CartContext";
 import ProductList from "../products/components/ProductList";
+import CartProductList from "./CartProductList";
 
 const Cart = props => {
   const { cart, setCart } = useContext(CartContext);
-
-  console.log(cart);
+  let products = [];
+  products = cart.filter((item, index) => cart.indexOf(item) === index);
+  let allPrice = 0;
+  cart.map(item => {
+    allPrice += item.price;
+  });
+  console.log(allPrice/100)
   return (
-    <div>
+    <div style={{ margin: "auto", "max-width": "600px" }}>
       {cart.length === 0 ? (
         <div>Няма продукти във вашата количка</div>
       ) : (
-        <div>
-          {cart.map(product => (
-            <ProductList product={product} />
+        <div style={{ "margin-top": "100px" }}>
+          {products.map(product => (
+            <CartProductList product={product} cart={cart} />
           ))}
         </div>
       )}
+      <div >
+       Общо: {allPrice/100} лв.
+      </div>
+        <button>Купи всичко и си еби майката</button>
     </div>
   );
 };
