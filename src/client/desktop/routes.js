@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HistoryPage from "./pages/history/HistoryPage";
 import NewsPage from "./pages/news/News";
 import LibraryPage from "./pages/library/LibraryPage";
 import DiocesePage from "./pages/diocese/DiocesePage";
@@ -10,14 +9,17 @@ import HomePage from "./pages/home/HomePage";
 import Register from "./modules/registration/Register";
 import Login from "./modules/login/Login";
 import BishopPage from "./pages/bishop/BishopPage";
-import CategoryProductsContainer from "./modules/products/categoryProducts/CategoryProductsContainer";
 import CategoryProductsPage from "./pages/category/CategoryProductsPage";
+import { CartContext } from "./cartContext/CartContext";
+import CartPage from "./pages/cart/CartPage";
 
-class Routes extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
+const Routes = props => {
+  const [cart, setCart] = useState([]);
+
+  return (
+    <Router>
+      <Switch>
+        <CartContext.Provider value={{ cart, setCart }}>
           <Route path="/" exact component={HomePage} />
           <Route path="/news" component={NewsPage} />
           <Route path="/blog" component={BlogPage} />
@@ -26,12 +28,15 @@ class Routes extends Component {
           <Route path="/library" component={LibraryPage} />
           <Route path="product/:slug" component={DiocesePage} />
           <Route path="/bishop" component={BishopPage} />
-          <Route path ="/registration" component={Register}/>
-          <Route path ="/login" component={Login}/>
-        </Switch>
-      </Router>
-    );
-  }
-}
+          <Route path="/cart" component={CartPage} />
+          <Route path="/registration" component={Register} />
+          <Route path="/login" component={Login} />
+        </CartContext.Provider>
+      </Switch>
+    </Router>
+  );
+};
+
+Routes.propTypes = {};
 
 export default Routes;

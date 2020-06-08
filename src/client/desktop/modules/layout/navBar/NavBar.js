@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./NavBarStyl.css";
 import jwt_decode from "jwt-decode";
+import { CartContext } from "../../../cartContext/CartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 let user;
 
@@ -19,6 +22,7 @@ function Exit() {
 }
 
 const NavBar = props => {
+  const { cart, setCart } = useContext(CartContext);
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -28,6 +32,14 @@ const NavBar = props => {
           </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
+          <Link to="/cart">
+            <div style={{ color: "white" }}>
+              {" "}
+              <FontAwesomeIcon icon={faShoppingCart} />
+              {cart.length}
+            </div>
+          </Link>
+
           {user ? (
             <div className="profile">
               {" "}

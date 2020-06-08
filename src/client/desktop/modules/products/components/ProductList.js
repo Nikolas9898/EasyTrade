@@ -1,8 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import "./ProductContainer.css";
+import { CartContext } from "../../../cartContext/CartContext";
 
 const ProductList = ({ product }) => {
+  const { cart, setCart } = useContext(CartContext);
+
+  const addToCart = () => {
+    let object = product;
+
+    setCart(currentCart => [...currentCart, object]);
+  };
+
   return (
     <div className="card">
       <img
@@ -21,12 +29,10 @@ const ProductList = ({ product }) => {
       </p>
       <p>Категория : {product.category}</p>
       <p>
-        <button>КУПИ СЕГА</button>
+        <button onClick={addToCart}>КУПИ СЕГА</button>
       </p>
     </div>
   );
 };
-
-ProductList.propTypes = {};
 
 export default ProductList;
